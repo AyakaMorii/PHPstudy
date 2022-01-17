@@ -1,0 +1,221 @@
+@charset "UTF-8";/*日本語に指定*/
+
+html {
+  font-size: 16px;/*全体のフォントサイズ　16px*/
+}
+
+
+body {
+  background-color: rgb(204, 223, 241);/*背景の色を指定*/
+}
+
+h1 {
+  font-size: 2rem;/*h1 フォントサイズ　32px*/
+}
+
+h2 {
+  font-size: 1.5rem; /*フォントサイズ　24px*/
+}
+
+/*ヘッダー*/
+header {
+  margin:0 auto; /*中央揃え*/
+  width:80%;/*両端を10%開ける864px*/
+  position:relative;
+  z-index: 100;
+
+  .menu {
+    position:absolute;
+    top:0;
+    right:0;
+    width:100%;
+
+    p.menuicon {
+      width:2rem;
+      height: 2rem;
+      border-radius: 0;
+      float:right;
+      background-color:deepskyblue;
+      border:blue 1px solid;
+      position:relative;
+      
+      &::before {
+        content: "";
+        display: block;
+        transition: all 0.4s;/*0.4秒かけて変わる*/
+        background: #fff;
+        left: 1rem;
+        top: 1rem;
+        width: 1rem;
+        height: 2px;
+        transform: translate(-50%, -50%);
+        position:absolute;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        transition: all 0.4s;
+        background: #fff;
+        left: 1rem;
+        top: 1rem;
+        width: 1rem;
+        height: 2px;
+        position:absolute;
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+
+      &.is-open {
+        &::after {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+      }
+    }
+
+    ul.menucontent {
+      background-color:rgba(196, 235, 230, 0.795);
+      list-style-type: none;
+      opacity: 0;
+      transition: .3s ease-in-out;/*ゆっくり出現*/
+      padding-left:0;
+      width:100%;
+      position:absolute;
+      top:50%;
+      right:0;
+
+      li {
+        text-align: center;
+        background-color: royalblue;
+        padding:3rem;
+        border-bottom: 1px solid;
+
+        &:hover {
+          background-color: skyblue;
+          font-size:2rem;
+        }
+
+        a {
+          text-decoration: none;
+          color:black;
+        }
+      }
+
+      &.is-open {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/*一番上の写真*/
+
+section#toppicture {
+  margin:0 auto 1rem;/*中央揃え、下を16px開ける*/
+  width: 80%;/*両端を10%開ける864px*/
+  display: none;/*フェードインするから最初の表示はなくす*/
+
+  div {
+    p {
+      text-align:center; /*pタグを中央揃え*/
+  
+      img {
+        object-fit:cover; /*画像がサイズを変えても伸びないようにする*/
+        width:100%;/*画像の大きさを親要素<p>に合わせる*/
+      }
+    }
+  }
+}
+
+/*INDEX*/
+
+section#index {
+  background-color: rgb(255, 255, 255);/*背景の色　白*/
+  width: 80%; /*画面に対する横幅　左右10％（864px）*/
+  margin: 0 auto 1rem; /*中央揃え、下を16px開ける*/
+  padding:1rem 0rem; /*余白が内側に上下16px、左右０*/
+
+  h2 {
+    width:65%;/*detailと開始位置を合わせるから50%+差の15%で65%
+    に指定*/
+    margin:0 auto;/*中央揃え*/
+  }
+
+  ul {
+    margin:0 auto;/*中央揃え*/
+    width: 65%;/*detailと開始位置を合わせるから50%+差の15%で65%に指定*/
+    list-style-type: decimal; /*liに番号をふる*/
+
+    li {
+      padding-top:1rem; /*文字の上のスペースは16px*/
+      padding-bottom:1rem;/*文字の下のスペースは16px*/
+    }
+  }
+}
+
+/*DETAIL*/
+
+section#detail {
+  margin: 0 auto 1rem;/*中央揃え、下を16px開ける*/
+  width: 80%;/*画面に対する横幅*/
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s, visibility 1s, transform 1s;
+
+  &.is-fadein {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  h2 {
+    margin:0 auto;/*中央揃え*/
+    width:65%;/*section#detailに対する幅が65％*/
+  }
+
+  article.contentdetail {
+    display:flex;/*横並びにする*/
+    justify-content:space-between;/*横に並べたコンテンツの間部分に余白を入れる*/
+    width:65%;/*section#detailに対する幅が65%*/
+    margin:0 auto;/*中央揃え*/
+
+    p {
+      img {
+        width:85%;/*画像の幅は90%*/
+        max-height:85%;/*画像の高さのMAXは90%*/
+        object-fit:cover;/*画像が伸びないようにする*/
+        padding:0 1rem 0 0;/*左だけ16px開ける*/
+      }
+    }
+  }
+
+  aside.mozi {
+    float:left;/*左に寄せる*/
+    padding:0 1rem 0 0;/*左だけ内側を16px開ける*/
+
+    table {
+      border-top: 1px solid rgba(143, 143, 143, 0.795);/*上の線を表示　1px 実線　グレー*/
+      border-bottom: 1px solid rgba(143, 143, 143, 0.795);/*したの線を表示　1px 実線　グレー*/
+      padding:1rem 0rem;/*内側の上下の余白を16px、左右の余白をなくす*/
+      white-space:nowrap;/*文字を横並びにする*/
+      width:100%;
+    }
+
+    p {
+      a {
+        text-decoration:underline; /*文字にアンダーラインを引く*/
+        color: rgb(0, 0, 0);/*文字の色を指定　黒*/
+      }
+    }
+  }
+}
+
+footer {
+  margin:0 auto;
+  width:80%;
+  font-size: 0.65rem; /*フォントサイズ　10.4px*/
+
+  p {
+    width:65%;/*footerに対する幅が65%*/
+    margin:0 auto;/*中央揃え*/
+  }
+}
+
